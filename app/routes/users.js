@@ -3,6 +3,7 @@ module.exports = app => {
     const users = require('../controller/userAPI')
 
     routes.get('/api/sing-up', users.singUp);
+    routes.post('/api/login', users.login);
 
     app.use('/', routes);
 }

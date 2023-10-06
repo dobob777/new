@@ -1,12 +1,24 @@
-const data = require('../../demo.json');
+
+const User = require('../schema/users');
 
 exports.singUp = async (req, res) => {
     try {
-        if (data.length !== 0) {
-            res.status(200).send(data);
-        } else {
-            res.status(404).send({ massage: "Data not found" });
-        }
+        const abc = await User.find({});
+        res.status(200).send({ data: abc });
+    } catch (error) {
+        console.log('error::: ', error);
+        res.status(500).send({ err: error });
+    }
+}
+
+exports.login = async (req, res) => {
+    try {
+        const addData = await User.create({
+            name: req.body.new_name,
+            phone: req.body.new_phone,
+            comment: req.body.new_comments
+        });
+        res.status(201).send({ success: addData });
     } catch (error) {
         console.log('error::: ', error);
         res.status(500).send({ err: error });
