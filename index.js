@@ -3,6 +3,9 @@ const app = express();
 const env = require('dotenv').config();
 require('./app/DB/connection')
 
+const cors = require('cors');
+app.use(cors());
+
 const { json } = require('express');
 app.use(json());
 
